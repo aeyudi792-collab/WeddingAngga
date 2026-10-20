@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Angga & Shenina</title>
+    <!-- Google Fonts untuk kesan Luxury/Mewah -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* === RESET & GLOBAL STYLES === */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold-primary: #D4AF37;
+            --gold-light: #F3E5AB;
+            --bg-dark: #0F141A;
+            --card-bg: rgba(25, 32, 42, 0.85);
+            --text-light: #F5F5F5;
+            --text-muted: #A0A0A0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .cinzel {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        .script-font {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold-primary);
+        }
+
+        /* === AUDIO CONTROLLER (FLOATING BUTTON) === */
+        .audio-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gold-primary), #996515);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            z-index: 999;
+            transition: transform 0.3s ease;
+        }
+
+        .audio-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .audio-btn i {
+            color: #000;
+            font-size: 1.2rem;
+        }
+
+        /* === HEADER / COVER DEPAN === */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(to bottom, rgba(15, 20, 26, 0.5), rgba(15, 20, 26, 0.95)),
+                        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcThidt0WeoTlL0JukDUsViyozcdAdeN9nHpw-ZXOzpo7g&s=10') center/cover no-repeat;
+        }
+
+        .hero-border {
+            border: 2px solid var(--gold-primary);
+            padding: 40px 20px;
+            border-radius: 8px;
+            backdrop-filter: blur(3px);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .hero h3 {
+            font-size: 1rem;
+            color: var(--gold-light);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            color: var(--gold-primary);
+            margin: 15px 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        }
+
+        .hero p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* === SEKSI MEMPALAI === */
+        .couples {
+            padding: 80px 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--gold-primary);
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-size: 0.95rem;
+        }
+
+        .couple-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            align-items: center;
+        }
+
+        .couple-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .couple-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold-primary);
+        }
+
+        .couple-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--gold-primary);
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .couple-name {
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .parents-info {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .divider-amp {
+            font-size: 3.5rem;
+            color: var(--gold-primary);
+        }
+
+        /* === DETAIL ACARA & JADWAL === */
+        .events {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(20, 26, 35, 1) 100%);
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            flex: 1 1 300px;
+            background: var(--card-bg);
+            border-top: 4px solid var(--gold-primary);
+            border-radius: 10px;
+            padding: 40px 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .event-card h3 {
+            font-size: 1.5rem;
+            color: var(--gold-primary);
+            margin-bottom: 20px;
+        }
+
+        .event-details {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .event-details li {
+            margin: 12px 0;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .event-details i {
+            color: var(--gold-primary);
+        }
+
+        .btn-location {
+            display: inline-block;
+            padding: 12px 25px;
+            background: transparent;
+            color: var(--gold-primary);
+            border: 1px solid var(--gold-primary);
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-location:hover {
+            background: var(--gold-primary);
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* === FOOTER & COPYRIGHT === */
+        footer {
+            padding: 40px 20px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .copyright {
+            margin-top: 25px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .copyright a {
+            color: var(--gold-primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            .divider-amp {
+                margin: -20px 0;
+            }
+            .couple-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PEMUTAR SOUND / AUDIO LATAR -->
+    <div class="audio-btn" id="audioToggle" onclick="toggleAudio()">
+        <i class="fa-solid fa-music" id="audioIcon"></i>
+    </div>
+    <audio id="weddingAudio" loop>
+       <sound src="kangen.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- HEADER / COVER DEPAN -->
+    <header class="hero">
+        <div class="hero-border">
+            <h3>Undangan Pernikahan</h3>
+            <p class="script-font" style="font-size: 2.5rem;">The Wedding of</p>
+            <h1>ANGGA & SHENINA</h1>
+            <p>Sabtu, 24 Oktober 2026</p>
+        </div>
+    </header>
+
+    <!-- DETAIL MEMPALAI -->
+    <section class="couples">
+        <h2 class="section-title">Pasangan Pengantin</h2>
+        <p class="section-subtitle">Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan.</p>
+
+        <div class="couple-grid">
+            <div class="couple-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAey8HTaNWy_EkT-qC7VoXLvqDLPkknBXp6JbpUW-ljA&s=10" alt="Angga Yunanda" class="couple-img">
+                <h3 class="couple-name">Angga Yunanda</h3>
+                <p class="parents-info">
+                    Putra dari:<br>
+                    <b>Bpk. Muhammad Yuliati</b><br>&<br><b>Ibu Yuliati Mahsun</b>
+                </p>
+            </div>
+
+            <div class="divider-amp script-font">&</div>
+
+            <div class="couple-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn7yfRIkEgP0rJGEZ-IOpSiHrfFH4QQ-sEx_3jLSBS6w&s=10" alt="Shenina Cinnamon" class="couple-img">
+                <h3 class="couple-name">Shenina Cinnamon</h3>
+                <p class="parents-info">
+                    Putri dari:<br>
+                    <b>Bpk. Harris Cinnamon</b><br>&<br><b>Ibu Fitriya Cinnamon</b>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- DETAIL ACARA & JADWAL -->
+    <section class="events">
+        <h2 class="section-title">Jadwal & Lokasi Acara</h2>
+        <p class="section-subtitle">Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+
+        <div class="event-container">
+            <div class="event-card">
+                <h3>AKAD NIKAH</h3>
+                <ul class="event-details">
+                    <li><i class="fa-regular fa-calendar-check"></i> Sabtu, 24 Oktober 2026</li>
+                    <li><i class="fa-regular fa-clock"></i> 08.00 - 10.00 WIB</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Ballroom Hotel Mulia, Jakarta</li>
+                </ul>
+                <a href="https://maps.google.com" target="_blank" class="btn-location">
+                    <i class="fa-solid fa-map-location-dot"></i> PETUNJUK LOKASI
+                </a>
+            </div>
+
+            <div class="event-card">
+                <h3>RESEPSI</h3>
+                <ul class="event-details">
+                    <li><i class="fa-regular fa-calendar-check"></i> Sabtu, 24 Oktober 2026</li>
+                    <li><i class="fa-regular fa-clock"></i> 11.00 - 15.00 WIB</li>
+                    <li><i class="fa-solid fa-location-dot"></i> Grand Ballroom Hotel Mulia, Jakarta</li>
+                </ul>
+                <a href="https://maps.google.com" target="_blank" class="btn-location">
+                    <i class="fa-solid fa-map-location-dot"></i> PETUNJUK LOKASI
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & COPYRIGHT -->
+    <footer>
+        <p>Terima kasih atas doa dan restu Anda.</p>
+        <p style="margin-top: 5px; color: var(--gold-primary);">Angga & Shenina</p>
+
+        <div class="copyright">
+            <p>&copy; 2026 Yudi Hermansyah.</p>
+            <p>Designed & Created with <i class="fa-solid fa-heart" style="color: var(--gold-primary);"></i> by <a href="https://sites.google.com/view/websiteeveryone" target="_blank">WebsiteYudzz</a></p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT UNTUK AUDIO CONTROLLER -->
+    <script>
+        const audio = document.getElementById('weddingAudio');
+        const audioIcon = document.getElementById('audioIcon');
+        let isPlaying = false;
+
+        function toggleAudio() {
+            if (isPlaying) {
+                audio.pause();
+                audioIcon.classList.remove('fa-music');
+                audioIcon.classList.add('fa-volume-xmark');
+            } else {
+                audio.play();
+                audioIcon.classList.remove('fa-volume-xmark');
+                audioIcon.classList.add('fa-music');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    audioIcon.classList.remove('fa-volume-xmark');
+                    audioIcon.classList.add('fa-music');
+                }).catch(() => {});
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>
